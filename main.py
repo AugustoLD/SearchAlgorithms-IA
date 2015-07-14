@@ -4,10 +4,10 @@ from a_star import AStar
 begin = None
 end = None
 vertex_set = set()
-path = []
+edge_list = []
 graph = {}
 
-hpath = []
+h_edge_list = []
 heuristic = {}
 
 def readFile(filename):
@@ -19,19 +19,19 @@ def readFile(filename):
         elif(line[0] == "final"):
             end = line[1]
         elif(line[0] == 'caminho'):
-            path.append(line[1].split(','))
+            edge_list.append(line[1].split(','))
             # converte o custo de string para inteiro
-            path[-1][-1] = int(path[-1][-1])
+            edge_list[-1][-1] = int(edge_list[-1][-1])
             # adiciona o vértice na "lista" (não se repete)
-            vertex_set |= set(path[-1][:2])
+            vertex_set |= set(edge_list[-1][:2])
         elif(line[0] == 'h'):
-            hpath.append(line[1].split(','))
+            h_edge_list.append(line[1].split(','))
             # converte o custo de string para inteiro
-            hpath[-1][-1] = int(hpath[-1][-1])
+            h_edge_list[-1][-1] = int(h_edge_list[-1][-1])
 
 readFile(sys.argv[1])
-graph = {vertex:{(list(set(edge[:2]) - set(vertex)))[0]: edge[-1] for edge in path if vertex in edge} for vertex in vertex_set}
-heuristic = {tuple(set(edge[0]) - {end})[0]: edge[-1] for edge in hpath}
+graph = {vertex:{(list(set(edge[:2]) - set(vertex)))[0]: edge[-1] for edge in edge_list if vertex in edge} for vertex in vertex_set}
+heuristic = {tuple(set(edge[0]) - {end})[0]: edge[-1] for edge in h_edge_list}
 print(graph)
 # print(heuristic)
-AStar(graph).search_path(begin, end, heuristic)
+print(AStar(graph).search_path(begin, end, heuristic))
