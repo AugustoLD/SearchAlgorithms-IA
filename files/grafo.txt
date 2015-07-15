@@ -1,0 +1,14 @@
+início(a).
+final(f).
+caminho(a,b,50).
+caminho(b,c,50).
+caminho(c,d,50).
+caminho(d,f,50).
+caminho(a,e,100).
+caminho(e,c,30).
+caminho(e,f,101).
+h(a,f,15).
+h(b,f,12).
+h(c,f,8).
+h(d,f,5).
+h(e,f,10).

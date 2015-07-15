@@ -7,12 +7,15 @@ class AStar(object):
         closed_nodes = set()
         g_cost = {}
         g_cost[begin] = 0
-        frontier = [(begin, g_cost[begin] + heuristic[begin])]
+        fringe = [(begin, g_cost[begin] + heuristic[begin])]
         parenting = {}
 
-        while frontier:
-            frontier.sort(key=lambda f_cost:f_cost[1], reverse=True)
-            current_node = frontier.pop()[0]
+        while fringe:
+            fringe.sort(key=lambda f_cost:f_cost[1], reverse=True)
+            # print("path: ", parenting)
+            # print("fringe(vertex, f_cost): ", fringe)
+            current_node = fringe.pop()[0]
+            print("Visited node: ", current_node)
             if current_node == end:
                 return self.reconstruct_path(parenting, current_node)
             closed_nodes.add(current_node)
@@ -21,11 +24,12 @@ class AStar(object):
                 if(neighbor_node in closed_nodes):
                     continue
                 new_g_cost = g_cost[current_node] + edge[1]
-                if neighbor_node not in dict(frontier) or new_g_cost < g_cost[neighbor_node]:
+                if neighbor_node not in dict(fringe) or new_g_cost < g_cost[neighbor_node]:
+                    print(neighbor_node, new_g_cost)
                     parenting[neighbor_node] = current_node
                     g_cost[neighbor_node] = new_g_cost
-                    if neighbor_node not in dict(frontier):
-                        frontier.append((neighbor_node, g_cost[neighbor_node] + heuristic[neighbor_node]))
+                    if neighbor_node not in dict(fringe):
+                        fringe.append((neighbor_node, g_cost[neighbor_node] + heuristic[neighbor_node]))
 
     def reconstruct_path(self, parenting, current_node):
         path = [current_node]

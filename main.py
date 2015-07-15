@@ -33,6 +33,6 @@ readFile(sys.argv[1])
 graph = {vertex:{(list(set(edge[:2]) - set(vertex)))[0]: edge[-1] for edge in edge_list if vertex == edge[0]} for vertex in vertex_set}
 heuristic = {tuple(set(edge[0]) - {end})[0]: edge[-1] for edge in h_edge_list if edge[1] == end}
 heuristic[end] = 0
-print(graph)
-print(heuristic)
+# print(graph)
+# print(heuristic)
 print(AStar(graph).search_path(begin, end, heuristic))
