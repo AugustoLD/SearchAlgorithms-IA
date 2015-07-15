@@ -30,11 +30,13 @@ class AStar(object):
                     g_cost[neighbor_node] = new_g_cost
                     if neighbor_node not in dict(fringe):
                         fringe.append((neighbor_node, g_cost[neighbor_node] + heuristic[neighbor_node]))
+        return "Caminho não encontrado"
 
     def reconstruct_path(self, parenting, current_node):
         path = [current_node]
+        spath = str(current_node)
         while current_node in parenting:
             current_node = parenting[current_node]
-            path.append(current_node)
-        path.reverse()
-        return path
+            path.insert(0, current_node)
+            spath = str(current_node) + ' -> ' + spath
+        return spath
