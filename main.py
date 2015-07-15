@@ -1,5 +1,5 @@
 import sys
-from a_star import AStar
+from astar import AStar
 
 begin = None
 end = None
@@ -30,8 +30,9 @@ def readFile(filename):
             h_edge_list[-1][-1] = int(h_edge_list[-1][-1])
 
 readFile(sys.argv[1])
-graph = {vertex:{(list(set(edge[:2]) - set(vertex)))[0]: edge[-1] for edge in edge_list if vertex in edge} for vertex in vertex_set}
-heuristic = {tuple(set(edge[0]) - {end})[0]: edge[-1] for edge in h_edge_list}
+graph = {vertex:{(list(set(edge[:2]) - set(vertex)))[0]: edge[-1] for edge in edge_list if vertex == edge[0]} for vertex in vertex_set}
+heuristic = {tuple(set(edge[0]) - {end})[0]: edge[-1] for edge in h_edge_list if edge[1] == end}
+heuristic[end] = 0
 print(graph)
-# print(heuristic)
+print(heuristic)
 print(AStar(graph).search_path(begin, end, heuristic))
