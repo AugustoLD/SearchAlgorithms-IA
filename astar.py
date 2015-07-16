@@ -1,7 +1,9 @@
-class AStar(object):
+from graph_search_algorithm import GraphSearchAlgorithm
+
+class AStar(GraphSearchAlgorithm):
 
     def __init__(self, graph):
-        self.__graph = graph
+        super(AStar, self).__init__(graph)
 
     def search_path(self, begin, end, heuristic):
         closed_nodes = set()
@@ -19,7 +21,7 @@ class AStar(object):
             if current_node == end:
                 return self.reconstruct_path(parenting, current_node)
             closed_nodes.add(current_node)
-            for edge in self.__graph[current_node].items():
+            for edge in self._graph[current_node].items():
                 neighbor_node = edge[0]
                 if(neighbor_node in closed_nodes):
                     continue
@@ -32,11 +34,4 @@ class AStar(object):
                         fringe.append((neighbor_node, g_cost[neighbor_node] + heuristic[neighbor_node]))
         return "Caminho não encontrado"
 
-    def reconstruct_path(self, parenting, current_node):
-        path = [current_node]
-        spath = str(current_node)
-        while current_node in parenting:
-            current_node = parenting[current_node]
-            path.insert(0, current_node)
-            spath = str(current_node) + ' -> ' + spath
-        return spath
+
