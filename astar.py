@@ -11,13 +11,14 @@ class AStar(GraphSearchAlgorithm):
         g_cost[begin] = 0
         fringe = [(begin, g_cost[begin] + heuristic[begin])]
         parenting = {}
+        iteration = 0
+        print(fringe)
 
         while fringe:
             fringe.sort(key=lambda f_cost:f_cost[1], reverse=True)
             # print("path: ", parenting)
             # print("fringe(vertex, f_cost): ", fringe)
             current_node = fringe.pop()[0]
-            print("Visited node: ", current_node)
             if current_node == end:
                 return self.reconstruct_path(parenting, current_node)
             closed_nodes.add(current_node)
@@ -27,11 +28,18 @@ class AStar(GraphSearchAlgorithm):
                     continue
                 new_g_cost = g_cost[current_node] + edge[1]
                 if neighbor_node not in dict(fringe) or new_g_cost < g_cost[neighbor_node]:
-                    print(neighbor_node, new_g_cost)
                     parenting[neighbor_node] = current_node
                     g_cost[neighbor_node] = new_g_cost
                     if neighbor_node not in dict(fringe):
                         fringe.append((neighbor_node, g_cost[neighbor_node] + heuristic[neighbor_node]))
+            iteration = iteration + 1
+            self.printIteration(iteration, current_node, fringe, parenting)
         return "Caminho não encontrado"
 
-
+    def printIteration(self, iteration, current_node, fringe, parenting):
+        print("------------------------------------")
+        print("Iteração: ", iteration)
+        print("Nó atual: ", current_node)
+        print("Fronteira:")
+        for edge in fringe:
+            print('\tVértice: ', edge[0], ' Custo: ', edge[1], 'Nó Pai: ', parenting[edge[0]])

@@ -1,0 +1,26 @@
+início(Foz do Iguaçu).
+final(Curitiba).
+caminho(Foz do Iguaçu,Cascavel,125).
+caminho(Cascavel,Campo Mourão,150).
+caminho(Cascavel,Guarapuava,200).
+caminho(Campo Mourão,Maringá,90).
+caminho(Campo Mourão,Guarapuava,175).
+caminho(Maringá,Mandaguari,35).
+caminho(Mandaguari,Jandaia do Sul,10).
+caminho(Mandaguari,Arapongas,25).
+caminho(Arapongas,Londrina,30).
+caminho(Arapongas,Apucarana,20).
+caminho(Londrina,Ourinhos,125).
+caminho(Ourinhos,Ponta Grossa,275).
+caminho(Ponta Grossa,Curitiba,110).
+caminho(Guarapuava,Ponta Grossa,150).
+caminho(Guarapuava,Irati,90).
+caminho(Irati,Curitiba,135).
+caminho(Jandaia do Sul,Apucarana,20).
+caminho(Jandaia do Sul,Guarapuava,220).
+caminho(Apucarana,Ponta Grossa,205).
+h(a,f,15).
+h(b,f,12).
+h(c,f,8).
+h(d,f,5).
+h(e,f,10).

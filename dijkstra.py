@@ -30,5 +30,3 @@ class Dijkstra(GraphSearchAlgorithm):
                     if neighbor_node not in dict(fringe):
                         fringe.append((neighbor_node, new_g_cost))
         return "Caminho não encontrado"
-
-
