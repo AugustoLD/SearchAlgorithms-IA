@@ -17,7 +17,7 @@ class GraphSearchAlgorithm(object):
             fringe.sort(key=lambda f_cost:f_cost[1], reverse=True)
             current_node = fringe.pop()[0]
 
-            # end the algorithm if target ndoe is found
+            # end the algorithm if target node is found
             if current_node == end:
                 self.printIteration(iteration, fringe, current_node, parenting)
                 print("-"*70)
@@ -59,4 +59,3 @@ class GraphSearchAlgorithm(object):
         print("Fringe:")
         for edge in fringe:
             print(('\tVertex: {} | Cost: {} | Parent: {}').format(edge[0], edge[1], parenting[edge[0]]))
-            # print('\tVertex: %s | Cost: %s | Parent: %s' % edge[0], edge[1], parenting[edge[0]])
