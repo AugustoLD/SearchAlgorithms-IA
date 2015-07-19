@@ -19,8 +19,16 @@ caminho(Irati,Curitiba,135).
 caminho(Jandaia do Sul,Apucarana,20).
 caminho(Jandaia do Sul,Guarapuava,220).
 caminho(Apucarana,Ponta Grossa,205).
-h(a,f,15).
-h(b,f,12).
-h(c,f,8).
-h(d,f,5).
-h(e,f,10).
+h(Foz do Iguaçu,Curitiba,400).
+h(Cascavel,Curitiba,350).
+h(Campo Mourão,Curitiba,330).
+h(Maringá,Curitiba,315).
+h(Mandaguari,Curitiba,300).
+h(Arapongas,Curitiba,280).
+h(Londrina,Curitiba,260).
+h(Ourinhos,Curitiba,220).
+h(Jandaia do Sul,Curitiba,200).
+h(Apucarana,Curitiba,350).
+h(Guarapuava,Curitiba,200).
+h(Ponta Grossa,Curitiba,100).
+h(Irati,Curitiba,100).

@@ -32,13 +32,13 @@ class GraphFile(object):
 
     def construct_graph(self):
         graph =  {vertex:{
-            (list(set(edge[:2]) - set(vertex)))[0]: edge[-1] for edge in self.edge_list if vertex == edge[0]
+            edge[1]: edge[2] for edge in self.edge_list if edge[0] == vertex
             } for vertex in self.vertex_set}
         return graph
 
     def construct_heuristic_table(self, end=None):
         end = end or self.end
-        heuristic_table= {tuple(set(edge[0]) - {end})[0]: edge[-1] for edge in self.heuristic_list if edge[1] == end}
+        heuristic_table= {h_edge[0]: h_edge[2] for h_edge in self.heuristic_list if h_edge[1] == end}
         heuristic_table[end] = 0
         return heuristic_table
 
