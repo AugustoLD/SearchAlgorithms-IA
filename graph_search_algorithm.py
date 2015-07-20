@@ -14,12 +14,11 @@ class GraphSearchAlgorithm(object):
             iteration = iteration + 1
 
             # get the least costing node
-            fringe.sort(key=lambda f_cost:f_cost[1], reverse=True)
-            current_node = fringe.pop()[0]
+            current_node = self.get_least(fringe)[0]
 
             # end the algorithm if target node is found
             if current_node == end:
-                self.printIteration(iteration, fringe, current_node, parenting)
+                self.print_iteration(iteration, fringe, current_node, parenting)
                 print("-"*70)
                 print("First Shortest Path: ", self.reconstruct_path(parenting, current_node))
                 return
@@ -42,8 +41,15 @@ class GraphSearchAlgorithm(object):
                     if neighbor_node not in dict(fringe):
                         # add neighbor node to the fringe with the calculated f cost
                         fringe.append((neighbor_node, calculate_f_cost(g_cost[neighbor_node], neighbor_node)))
-            self.printIteration(iteration, fringe, current_node, parenting)
+            self.print_iteration(iteration, fringe, current_node, parenting)
         print("Path nout found!")
+
+    def get_least(self, fringe):
+        least = (0, fringe[0][1])
+        for idx, vertex in enumerate(fringe[1:]):
+            if vertex[1] < least[1]:
+                least = (idx+1, vertex[1])
+        return fringe.pop(least[0])
 
     def reconstruct_path(self, parenting, current_node):
         path = str(current_node)
@@ -52,7 +58,7 @@ class GraphSearchAlgorithm(object):
             path = str(current_node) + ' -> ' + path
         return path
 
-    def printIteration(self, iteration, fringe, current_node, parenting):
+    def print_iteration(self, iteration, fringe, current_node, parenting):
         print("-"*70)
         print("Iteration: ", iteration)
         print("Current node: ", current_node)
