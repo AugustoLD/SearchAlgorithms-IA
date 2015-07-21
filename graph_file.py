@@ -1,12 +1,11 @@
 class GraphFile(object):
 
-    def __init__(self, filename="files/entrada.txt"):
+    def __init__(self):
         self.begin = None
         self.end = None
         self.vertex_set = set()
         self.edge_list = []
         self.heuristic_list = []
-        self.read_file(filename)
 
     def read_file(self, filename):
         try:
@@ -27,8 +26,10 @@ class GraphFile(object):
                         self.heuristic_list.append(line[1].split(','))
                         # converte o custo de string para inteiro
                         self.heuristic_list[-1][-1] = int(self.heuristic_list[-1][-1])
+            return True
         except FileNotFoundError:
-            print("Arquivo não encontrado")
+            print("File not found")
+            return False
 
     def construct_graph(self, mode='directed'):
         graph = {}

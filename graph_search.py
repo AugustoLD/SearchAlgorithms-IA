@@ -32,7 +32,9 @@ end = None
 
 def setup(filename):
     global graph_file, graph, begin, end, heuristic
-    graph_file = GraphFile(filename)
+    graph_file = GraphFile()
+    while not graph_file.read_file(filename):
+        filename = str(input("New file path: ")).rstrip()
     graph = graph_file.construct_graph()
     heuristic = graph_file.construct_heuristic_table()
     begin = graph_file.begin
@@ -52,7 +54,7 @@ def alter_end():
             end = new_end
             heuristic = new_heuristic
         else:
-            print('Error: heuristic incomplete!')
+            print('Error: heuristic is incomplete!')
             input('Press any key...')
     else:
         print('Error: Invalid node!')
@@ -64,7 +66,7 @@ def alter_begin():
     if start in graph:
         begin = start
     else:
-        print('Invalid node!')
+        print('Error: Invalid node!')
         input('Press any key...')
 
 def show_graph():
