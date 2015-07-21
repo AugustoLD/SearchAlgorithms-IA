@@ -124,5 +124,7 @@ def run():
             menu[menu_opt]()
 
 if __name__ == '__main__':
-    setup(sys.argv[1])
+    if len(sys.argv) > 2: filename = sys.argv[1]
+    else: filename = ""
+    setup(filename)
     run()
