@@ -1,9 +1,9 @@
-class GraphSearchAlgorithm(object):
+class UniformCostAlgorithm(object):
 
     def __init__(self, graph):
         self._graph = graph
 
-    def best_first(self, begin, end, calculate_f_cost):
+    def uniform_cost_search(self, begin, end, calculate_f_cost):
         closed_nodes = set()
         g_cost = {begin: 0}
         fringe = [(begin, calculate_f_cost(g_cost[begin], begin))]

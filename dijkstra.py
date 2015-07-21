@@ -1,6 +1,6 @@
-from graph_search_algorithm import GraphSearchAlgorithm
+from uniform_cost_algorithm import UniformCostAlgorithm
 
-class Dijkstra(GraphSearchAlgorithm):
+class Dijkstra(UniformCostAlgorithm):
 
     def __init__(self, graph):
         super(Dijkstra, self).__init__(graph)
@@ -11,4 +11,4 @@ class Dijkstra(GraphSearchAlgorithm):
     def search_path(self, begin, end):
         print('\n')
         print('-'*70, '\n', 'Dijkstra'.center(70))
-        self.best_first(begin, end, self.calculate_f_cost)
+        self.uniform_cost_search(begin, end, self.calculate_f_cost)

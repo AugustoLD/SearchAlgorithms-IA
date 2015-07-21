@@ -1,6 +1,6 @@
-from graph_search_algorithm import GraphSearchAlgorithm
+from uniform_cost_algorithm import UniformCostAlgorithm
 
-class AStar(GraphSearchAlgorithm):
+class AStar(UniformCostAlgorithm):
 
     def __init__(self, graph):
         super(AStar, self).__init__(graph)
@@ -12,4 +12,4 @@ class AStar(GraphSearchAlgorithm):
         print('\n')
         print('-'*70, '\n', 'A*'.center(70))
         self.heuristic = heuristic
-        return self.best_first(begin, end, self.calculate_f_cost)
+        return self.uniform_cost_search(begin, end, self.calculate_f_cost)
