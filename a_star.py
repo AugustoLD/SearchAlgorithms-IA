@@ -6,7 +6,7 @@ class AStar(BestFirstAlgorithm):
         super(AStar, self).__init__(graph)
 
     def calculate_f_cost(self, g_cost, node):
-        return g_cost + self.heuristic[node]
+        return g_cost[node] + self.heuristic[node]
 
     def search_path(self, begin, end, heuristic):
         print('\n')

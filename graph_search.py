@@ -48,14 +48,8 @@ def alter_end():
     global end, heuristic
     target = str(input('New target node: '))
     if target in graph:
-        new_end = target
-        new_heuristic = graph_file.construct_heuristic_table(new_end)
-        if graph_file.is_heuristic_complete(new_heuristic):
-            end = new_end
-            heuristic = new_heuristic
-        else:
-            print('Error: heuristic is incomplete!')
-            input('Press any key...')
+        end = target
+        heuristic = graph_file.construct_heuristic_table(end)
     else:
         print('Error: Invalid node!')
         input('Press any key...')
@@ -78,7 +72,10 @@ def show_heuristic():
     input('Press any key...')
 
 def run_a_star():
-    AStar(graph).search_path(begin, end, heuristic)
+    if graph_file.is_heuristic_complete(heuristic):
+        AStar(graph).search_path(begin, end, heuristic)
+    else:
+        print('Error: heuristic is incomplete for the target {}!'.format(end))
     input('Press any key...')
 
 def run_dijkstra():
@@ -126,7 +123,10 @@ def run():
             menu[menu_opt]()
 
 if __name__ == '__main__':
-    if len(sys.argv) > 2: filename = sys.argv[1]
-    else: filename = ""
+    try:
+        filename = sys.argv[1]
+    except IndexError:
+        filename = ""
+
     setup(filename)
     run()

@@ -6,7 +6,7 @@ class Dijkstra(BestFirstAlgorithm):
         super(Dijkstra, self).__init__(graph)
 
     def calculate_f_cost(slef, g_cost, node):
-        return g_cost;
+        return g_cost[node];
 
     def search_path(self, begin, end):
         print('\n')

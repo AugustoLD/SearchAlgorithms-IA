@@ -6,7 +6,7 @@ class BestFirstAlgorithm(object):
     def best_first_search(self, begin, end, calculate_f_cost):
         closed_nodes = set()
         g_cost = {begin: 0}
-        fringe = [(begin, calculate_f_cost(g_cost[begin], begin))]
+        fringe = [(begin, calculate_f_cost(g_cost, begin))]
         parenting = {}
         iteration = 0
 
@@ -40,7 +40,7 @@ class BestFirstAlgorithm(object):
                     g_cost[neighbor_node] = new_g_cost
                     if neighbor_node not in dict(fringe):
                         # add neighbor node to the fringe with the calculated f cost
-                        fringe.append((neighbor_node, calculate_f_cost(g_cost[neighbor_node], neighbor_node)))
+                        fringe.append((neighbor_node, calculate_f_cost(g_cost, neighbor_node)))
             self.print_iteration(iteration, fringe, current_node, parenting)
         print("Path nout found!")
 
