@@ -52,7 +52,7 @@ h(Fagaras,Bucharest,178).
 h(Giurgiu,Bucharest,77).
 h(Hirsova,Bucharest,151).
 h(Iasi,Bucharest,226).
-h(Logoj,Bucharest,244).
+h(Lugoj,Bucharest,244).
 h(Mehadia,Bucharest,241).
 h(Neamt,Bucharest,234).
 h(Oradea,Bucharest,380).
@@ -60,9 +60,6 @@ h(Pitesti,Bucharest,98).
 h(Rimnicu Vilcea,Bucharest,193).
 h(Sibiu,Bucharest,253).
 h(Timisoara,Bucharest,329).
-h(Urziceno,Bucharest,80).
+h(Urziceni,Bucharest,80).
 h(Vaslui,Bucharest,199).
 h(Zerind,Bucharest,374).
-
-
-

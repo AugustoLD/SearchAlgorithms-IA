@@ -31,4 +31,4 @@ h(Jandaia do Sul,Curitiba,295).
 h(Apucarana,Curitiba,275).
 h(Guarapuava,Curitiba,200).
 h(Ponta Grossa,Curitiba,100).
-h(Irati,Curitiba,100).
+h(Irati,Curitiba,120).

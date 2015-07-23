@@ -52,7 +52,7 @@ def alter_end():
         heuristic = graph_file.construct_heuristic_table(end)
     else:
         print('Error: Invalid node!')
-        input('Press any key...')
+        input('Press Enter...')
 
 def alter_begin():
     global begin
@@ -61,26 +61,29 @@ def alter_begin():
         begin = start
     else:
         print('Error: Invalid node!')
-        input('Press any key...')
+        input('Press Enter...')
 
 def show_graph():
     graph_file.print_graph(graph)
-    input('Press any key...')
+    input('Press Enter...')
 
 def show_heuristic():
-    graph_file.print_heuristic(heuristic, end)
-    input('Press any key...')
+    if graph_file.is_heuristic_complete(heuristic):
+        graph_file.print_heuristic(heuristic, end)
+    else:
+        print('Error: heuristic is incomplete for the target {}!'.format(end))
+    input('Press Enter...')
 
 def run_a_star():
     if graph_file.is_heuristic_complete(heuristic):
         AStar(graph).search_path(begin, end, heuristic)
     else:
         print('Error: heuristic is incomplete for the target {}!'.format(end))
-    input('Press any key...')
+    input('Press Enter...')
 
 def run_dijkstra():
     Dijkstra(graph).search_path(begin, end)
-    input('Press any key...')
+    input('Press Enter...')
 
 def run_search_algorithms():
     menu = {

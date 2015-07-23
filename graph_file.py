@@ -10,26 +10,33 @@ class GraphFile(object):
     def read_file(self, filename):
         try:
             with open(filename, 'r', encoding='utf-8') as graph_file:
-                for line in graph_file:
-                    line = line.rstrip(").\n").split("(")
-                    if line[0] == "início":
-                        self.begin = line[1]
-                    elif line[0] == "final":
-                        self.end = line[1]
-                    elif line[0] == 'caminho':
-                        self.edge_list.append(line[1].split(','))
-                        # converte o custo de string para inteiro
-                        self.edge_list[-1][-1] = int(self.edge_list[-1][-1])
-                        # adiciona o vértice na "lista" (não se repete)
-                        self.vertex_set |= set(self.edge_list[-1][:2])
-                    elif line[0] == 'h':
-                        self.heuristic_list.append(line[1].split(','))
-                        # converte o custo de string para inteiro
-                        self.heuristic_list[-1][-1] = int(self.heuristic_list[-1][-1])
+                self.process_graph_file(graph_file)
             return True
         except FileNotFoundError:
             print("File not found")
             return False
+        except:
+            with open(filename, 'r', encoding='latin1') as graph_file:
+                self.process_graph_file(graph_file)
+            return True
+
+    def process_graph_file(self, graph_file):
+        for line in graph_file:
+            line = line.rstrip(").\n").split("(")
+            if line[0] == "início":
+                self.begin = line[1]
+            elif line[0] == "final":
+                self.end = line[1]
+            elif line[0] == 'caminho':
+                self.edge_list.append(line[1].split(','))
+                # converte o custo de string para inteiro
+                self.edge_list[-1][-1] = int(self.edge_list[-1][-1])
+                # adiciona o vértice na "lista" (não se repete)
+                self.vertex_set |= set(self.edge_list[-1][:2])
+            elif line[0] == 'h':
+                self.heuristic_list.append(line[1].split(','))
+                # converte o custo de string para inteiro
+                self.heuristic_list[-1][-1] = int(self.heuristic_list[-1][-1])
 
     def construct_graph(self, mode='directed'):
         graph = {}
